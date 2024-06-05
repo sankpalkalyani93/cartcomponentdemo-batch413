@@ -27,6 +27,9 @@
                 </form>
             </td>
             <td>{{ item.book.price }}</td>
+            <td>
+                <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+            </td>
         </tr>    
         {% endfor %}
     </tbody>

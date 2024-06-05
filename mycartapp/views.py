@@ -26,6 +26,12 @@ def update_cart_item(request, item_id):
     cart_item.save()
     return redirect('cart_detail')
 
+def remove_from_cart(request, item_id):
+    cart = Cart.objects.get(user=request.user)
+    cart_item = get_object_or_404(CartItem, id=item_id, cart=cart)
+    cart_item.delete()
+    return redirect('cart_detail')
+
 def cart_detail(request):
     cart, created = Cart.objects.get_or_create(user=request.user)
     cart_items = cart.items.all()
